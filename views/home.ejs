@@ -1,0 +1,150 @@
+<!-- views/home.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bestillingsside</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #F4EAEF; /* Pink baggrundsfarve */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column; /* Stak containere i kolonne retning */
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    form {
+      background-color: #333; /* Sort baggrundsfarve til form */
+      color: #FFF; /* Hvid tekstfarve */
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      margin-bottom: 20px; /* Afstand mellem formular og kurv-container */
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #FFF; /* Hvid tekstfarve */
+    }
+
+    select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #FF69B4; /* Pink knapfarve */
+      color: #FFF; /* Hvid tekstfarve */
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #E04593; /* Mørkere pink ved hover */
+    }
+
+    p {
+      text-align: center;
+      margin-top: 20px;
+      color: #FFF; /* Hvid tekstfarve */
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0; /* Fjern margen for at undgå tom plads */
+    }
+
+    li {
+      margin-bottom: 8px;
+      color: #FFF; /* Hvid tekstfarve */
+    }
+
+    form:last-child {
+      margin-top: 20px;
+    }
+
+    /* Ny stil til knappen for at tjekke ordrestatus */
+    .check-status-btn {
+      text-align: center;
+      margin-top: auto; /* Placer knappen i bunden af containeren */
+    }
+
+    /* Juster farver på inputfeltet for bedre synlighed */
+    select {
+      color: #333; /* Sort tekstfarve på input */
+      background-color: #FFF; /* Hvid baggrundsfarve på input */
+    }
+  </style>
+</head>
+<body>
+  <form action="/addToCart" method="post">
+    <h1 style="color: #FF69B4;">Velkommen <%= username %>!</h1>
+    <p>Vælg dine bestillinger:</p>
+
+    <label for="salad">SALAD BOWLS:</label>
+    <select id="salad" name="salad">
+      <option value="GREEN VEGAN BOWL">GREEN VEGAN BOWL - 80kr</option>
+    </select>
+    <button type="submit" name="addToCart" value="salad">Tilføj til kurv</button>
+    <br>
+
+    <label for="sandwich">SANDWICHES:</label>
+    <select id="sandwich" name="sandwich">
+      <option value="JOEs Club">JOEs Club - 65kr</option>
+      <option value="Tunacado">Tunacado - 65kr</option>
+    </select>
+    <button type="submit" name="addToCart" value="sandwich">Tilføj til kurv</button>
+    <br>
+
+    <label for="juice">JUICES:</label>
+    <select id="juice" name="juice">
+      <option value="Iron man">Iron man - 60kr</option>
+      <option value="Stress Down">Stress Down - 60kr</option>
+    </select>
+    <button type="submit" name="addToCart" value="juice">Tilføj til kurv</button>
+  </form>
+
+  <div style="text-align: center;"> <!-- Centeret tekst -->
+    <h2 style="color: #333;">Din kurv:</h2>
+    <form action="/placeOrder" method="post">
+      <% if (cart && cart.length > 0) { %>
+        <ul>
+          <% cart.forEach(item => { %>
+            <li><%= item.name %> - <%= item.price %>kr</li>
+          <% }); %>
+        </ul>
+        <button type="submit" style="background-color: #FF69B4;">Bestil</button>
+      <% } else { %>
+        <p>Din kurv er tom.</p>
+      <% } %>
+    </form>
+  </div>
+
+  <!-- Knappen for at tjekke ordrestatus -->
+  <form class="check-status-btn" action="/orderstatus" method="get">
+    <button type="submit" style="background-color: #FF69B4;">Tjek om din ordre er klar til afhentning</button>
+  </form>
+
+  <!-- Log ud knap -->
+  <a href="/frontpage" style="color: #FF69B4; margin-top: 20px; text-decoration: none;">Log ud</a>
+</body>
+</html>

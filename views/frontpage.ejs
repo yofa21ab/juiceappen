@@ -1,0 +1,64 @@
+<!-- views/frontpage.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Velkommen til Joe & the Juice</title>
+  <style>
+        h1 a {
+      text-decoration: none; /* Fjern understregningen */
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #F4EAEF; /* Pink baggrundsfarve */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      background-color: #333; /* Sort baggrundsfarve til form */
+      color: #FFF; /* Hvid tekstfarve */
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      margin-top: 20px; /* Afstand mellem overskrift og formular */
+    }
+
+    button {
+      background-color: #FF69B4; /* Pink knapfarve */
+      color: #FFF; /* Hvid tekstfarve */
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    button:hover {
+      background-color: #E04593; /* Mørkere pink ved hover */
+    }
+  </style>
+</head>
+<body>
+  <h1>Velkommen til Joe & the Juice <a href="https://www.youtube.com/watch?v=x0t4wW4POWI" target="_blank">🐻</a></h1>
+
+  <form method="post">
+    <button type="submit" name="role" value="employee" formaction="/workerlogin">Medarbejder</button>
+    <button type="submit" name="role" value="customer" formaction="/login">Kunde</button>
+  </form>
+</body>
+</html>

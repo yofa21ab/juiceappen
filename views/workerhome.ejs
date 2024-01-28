@@ -1,0 +1,99 @@
+<!-- views/workerhome.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medarbejder Hjem</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #F4EAEF; /* Pink baggrundsfarve */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px; /* Afstand mellem velkomstbesked og ordreliste */
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0; /* Fjern margen for at undgå tom plads */
+      width: 100%;
+      max-width: 400px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      background-color: #FFF; /* Hvid baggrundsfarve */
+      border-radius: 4px;
+      padding: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .order-btn {
+      background-color: #FF69B4; /* Pink knapfarve */
+      color: #FFF; /* Hvid tekstfarve */
+      padding: 5px 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px; /* Afstand mellem ordre og knap */
+    }
+
+    .order-btn:hover {
+      background-color: #E04593; /* Mørkere pink ved hover */
+    }
+
+    a {
+      text-align: center;
+      margin-top: 20px;
+      color: #FF69B4; /* Pink tekstfarve */
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Velkommen <%= username %>!</h1>
+
+  <% if (orders && orders.length > 0) { %>
+    <h2>Dine opgaver:</h2>
+    <ul>
+      <% orders.forEach((order, index) => { %>
+        <li>
+          <p><strong><%= order.username %></strong> har bestilt:</p>
+          <ul>
+            <% order.items.forEach(item => { %>
+              <li><%= item.name %></li>
+            <% }); %>
+          </ul>
+          <form action="/completeOrder" method="post">
+            <input type="hidden" name="orderId" value="<%= index %>">
+            <button type="submit" class="order-btn">Færdig</button>
+          </form>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <p>Ingen ordrer endnu.</p>
+  <% } %>
+
+  <a href="/logout">Log ud</a>
+</body>
+
+</html>

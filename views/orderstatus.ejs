@@ -1,0 +1,87 @@
+<!-- views/orderstatus.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Klar til afhentning</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #F4EAEF; /* Pink baggrundsfarve */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      color: #FF69B4; /* Pink overskriftsfarve */
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      width: 100%;
+      max-width: 400px;
+      margin-top: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      background-color: #FFF; /* Hvid baggrundsfarve på container */
+      border-radius: 4px;
+      padding: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    li span {
+      margin-right: 8px;
+      color: #333; /* Sort tekstfarve */
+    }
+
+    a {
+      text-align: center;
+      margin-top: 20px;
+      color: #FF69B4; /* Pink tekstfarve */
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Klar til afhentning:</h1>
+
+  <% if (completedOrders && completedOrders.length > 0) { %>
+    <ul>
+      <% completedOrders.forEach(order => { %>
+        <li>
+          <span><strong><%= order.username %></strong>s bestilling:</span>
+          <ul>
+            <% order.items.forEach(item => { %>
+              <li><%= item.name %></li>
+            <% }); %>
+          </ul>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <p>Ingen ordrer klar til afhentning endnu.</p>
+  <% } %>
+
+  <a href="/home" style="color: #FF69B4;">Stadig sulten? Bestil noget mere</a>
+</body>
+
+</html>

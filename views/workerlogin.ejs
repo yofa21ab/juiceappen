@@ -1,0 +1,77 @@
+<!-- views/workerlogin.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medarbejder Log Ind</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #F4EAEF; /* Pink baggrundsfarve */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      background-color: #333; /* Sort baggrundsfarve til form */
+      color: #FFF; /* Hvid tekstfarve */
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      margin-top: 20px; /* Afstand mellem overskrift og formular */
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #FFF; /* Hvid tekstfarve */
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #FF69B4; /* Pink knapfarve */
+      color: #FFF; /* Hvid tekstfarve */
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #E04593; /* Mørkere pink ved hover */
+    }
+  </style>
+</head>
+<body>
+  <h1>Medarbejder Log Ind</h1>
+  <form action="/workerlogin" method="post">
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" required>
+    <br>
+    <label for="password">Kode:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <button type="submit">Log Ind</button>
+  </form>
+</body>
+</html>
